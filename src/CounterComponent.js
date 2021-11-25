@@ -21,11 +21,7 @@ export default function CounterComponent(props){
     useEffect(()=>{
         console.log("Mount and updating phase")
     }, [initialValue])
-    useEffect(()=>{
-        return()=>{
-            console.log("Unmounted")
-        }
-    },[])
+ 
     
         return(
             <>
