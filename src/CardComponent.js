@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -27,6 +27,7 @@ export default function CardComponent(props) {
 
   return (
     <Card sx={{ minWidth: 275 }}>
+      {toggle?<>
       <CardContent>
         <Typography  gutterBottom>
           {props.heading}
@@ -39,11 +40,12 @@ export default function CardComponent(props) {
         <Typography variant="body2">
           {props.description}
         </Typography>
-      </CardContent>
+      </CardContent></>:<>nothing</>}
       <CardActions>
+        
         {props.toggleFunctionality ? 
           <Button size="small" onClick={() => toggleFunctionality()}>Mount / UnMount</Button>:
-          <Button>About us</Button>}
+          <></>}
       </CardActions>
     </Card>
   );

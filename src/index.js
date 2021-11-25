@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App componentName={"Functional"} institute="Guvi" />
+    <App counterComponent="Counter"/>
   </React.StrictMode>,
   document.getElementById('root')
 );

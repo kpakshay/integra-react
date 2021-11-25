@@ -1,51 +1,45 @@
-import React, {Component} from 'react';
-import CardComponent from './Card'
+// import { render } from "react-dom";
+import React, {Component,useState,useEffect} from "react";
+import CardComponent from './CardComponent';
 
-class CounterComponent extends Component{
-    constructor(props){
-        console.log('constructor')
-        super(props);
-        this.state={
-            initialValue : 5
-        }
+export default function CounterComponent(props){
+
+    const [initialValue, setValue] = useState(5);
+    const [toggle, setToggle] = useState(true);
+    const handleIncrement=()=>{
+        setValue(initialValue+1)
     }
-    // Page refresh, First time rennder from parent component
-    componentDidMount(){
-        console.log('Mounting Phase, componentDidMount');
+    const handleReset=()=>{
+        setValue(5)
     }
-    // Update state variable
-    componentDidUpdate(){
-        console.log("Updating Phase, componentDidUpdate");
-    }
-    shouldComponentUpdate(props, toBeUpdatedValue){
-        console.log(toBeUpdatedValue)
-        if(toBeUpdatedValue.initialValue < 0) {
-            return false;
-        }
-        else
-            return true;
-    }
-    // Unrendering form parent component
-    componentWillUnmount(){
-        console.log("Unmounting Phase, componentWillUnMount")
-    }
-    handleIncrement = () => {
-        this.setState({initialValue : this.state.initialValue + 1 })
-    }
-    render(){
-        console.log('render')
-        return(
-            <>  
-                <h3>{this.props.componentName} Component</h3>
-                <CardComponent heading="Counter Component" subheading="Class Component" 
-                    description="This component contains increment, descrement functionalities"/>
-                <h4>Initial Value : {this.state.initialValue} </h4>
-                <button onClick={this.handleIncrement}>Increment</button> &nbsp;
-                <button onClick={() => this.setState({initialValue : this.state.initialValue -1})} >Decrement</button>&nbsp;
-                <button onClick={() => this.setState({initialValue : 5})} >Reset</button>
-            </>
-        )
-    }
+    const toggleFunctionality=()=>{
+        setToggle(!toggle)
 }
+    useEffect(()=>{
+        console.log("Mounting phase")
+    }, [])
+    useEffect(()=>{
+        console.log("Mount and updating phase")
+    }, [initialValue])
+    useEffect(()=>{
+        return()=>{
+            console.log("Unmounted")
+        }
+    },[])
+    
+        return(
+            <>
+            {toggle?
+            <>
+            This is {props.componentName} component<br/>
+            initial value: {initialValue}<br/>
+            <button onClick={handleIncrement}>Increment</button>&nbsp;
+           
+            <button onClick={()=>setValue(initialValue-1)}>Decrement</button>&nbsp;
+            <button onClick={handleReset}>Reset</button>&nbsp;</>:<></>
+        }
+            <button size="small" onClick={() => toggleFunctionality()}>Mount / UnMount</button>
+            </>
+        );
 
-export default CounterComponent;
+}
