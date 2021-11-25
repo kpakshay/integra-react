@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\Newfolder\\git"
+		},
+		{
+			"path": "..\\..\\..\\Newfolder"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Newfolder"
+	}
+}
